@@ -4,7 +4,7 @@ import Botao from '../botao/botao'
 import Parciais from '../parciais/parciais'
 //import LabelRelogio from '../labelRelogio/labelRelogio'
 import '../../App.css'
-
+import './styles.css'
 export default function Cronometro(){
 
     const [minutos, setMinutos] = useState(0)
@@ -21,11 +21,12 @@ export default function Cronometro(){
         setMinutos(0);
         setSegundos(0);
         setCentesimos(0);
+        setParciais("")
         setIsActive(false);
       }
     
     function appParcial(){
-        setParciais(parcial => parcial + minutos+":"+segundos+":"+centesimos+"\n")
+        setParciais(parcial => " "+parcial + minutos+":"+segundos+":"+centesimos+" ")
     }
 
     useEffect(() => {
@@ -57,6 +58,7 @@ export default function Cronometro(){
             centesimos={centesimos}
             />
            
+           <section className="grid grid-template-columns-1">
             <Botao
             onClick={toogle}
             label={isActive ? "Pausar" : "Iniciar"}
@@ -69,7 +71,7 @@ export default function Cronometro(){
             onClick={appParcial}
             label="Parcial"
             />
-
+            </section>
             <Parciais
             parciais={parciais}
             />
