@@ -9,7 +9,7 @@ export default function Cronometro(){
 
     const [minutos, setMinutos] = useState(0)
     const [segundos, setSegundos] = useState(0)
-    const [milisegundos, setMilisegundos] = useState(0)
+    const [centesimos, setCentesimos] = useState(0)
     const [parciais, setParciais] = useState("")
     const[isActive, setIsActive] = useState(false)
     
@@ -18,13 +18,14 @@ export default function Cronometro(){
     }
 
     function reset() {
-        setSegundos(0);
         setMinutos(0);
+        setSegundos(0);
+        setCentesimos(0);
         setIsActive(false);
       }
     
     function appParcial(){
-        setParciais(parcial => parcial + minutos+":"+segundos+"\n")
+        setParciais(parcial => parcial + minutos+":"+segundos+":"+centesimos+"\n")
     }
 
     useEffect(() => {
@@ -34,14 +35,18 @@ export default function Cronometro(){
            if(segundos === 59){
                setSegundos(0)
                setMinutos(minutos => minutos+1)
-           } else 
-           setSegundos(segundos => segundos + 1);
-        }, 1000);
+           } else if(centesimos === 99){
+                setSegundos(segundos => segundos + 1)
+                setCentesimos(0)
+           }
+           //setSegundos(segundos => segundos + 1);
+           setCentesimos(centesimos => centesimos + 1);
+        }, 1);
        } else if (!isActive && segundos !== 0) {
          clearInterval(interval);
        }
        return () => clearInterval(interval);
-     }, [isActive, segundos]);
+     }, [isActive, segundos, centesimos]);
     
     
     return(
@@ -49,7 +54,7 @@ export default function Cronometro(){
             <Relogio 
             minutos={minutos}
             segundos={segundos}
-            milisegundos={milisegundos}
+            centesimos={centesimos}
             />
            
             <Botao
