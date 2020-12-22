@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import Relogio from '../relogio/relogio'
 import Botao from '../botao/botao'
 import Parciais from '../parciais/parciais'
-//import LabelRelogio from '../labelRelogio/labelRelogio'
 import '../../App.css'
 import './styles.css'
+
 export default function Cronometro(){
 
     const [minutos, setMinutos] = useState(0)
@@ -52,12 +51,7 @@ export default function Cronometro(){
     
     return(
         <div>
-            <Relogio 
-            minutos={minutos}
-            segundos={segundos}
-            centesimos={centesimos}
-            />
-           
+          <h1>{minutos}:{segundos}:{centesimos}</h1>
            <section className="grid grid-template-columns-1">
             <Botao
             onClick={toogle}
