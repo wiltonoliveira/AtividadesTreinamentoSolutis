@@ -51,6 +51,7 @@ export default function Cronometro(){
     
     return(
         <div>
+          <h2>Cronometro</h2>
           <h1>{minutos}:{segundos}:{centesimos}</h1>
            <section className="grid grid-template-columns-1">
             <Botao

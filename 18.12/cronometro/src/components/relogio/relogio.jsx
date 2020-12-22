@@ -19,12 +19,13 @@ export default function Relogio() {
         return () => {
           clearInterval(interval);
         };
-      }, [data]);
+      }, []);
       
     
 
     return(
         <div>
+            <h2>Hora Certa</h2>
             <h1 className="my-title">{horas}:{minutos}:{segundos}</h1>
         </div>
     )
